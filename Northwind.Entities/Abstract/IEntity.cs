@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Northwind.WebFormsUI
+namespace Northwind.Entities.Abstract
 {
-    public class Class1
+    public interface IEntity
     {
+
     }
 }
