@@ -79,31 +79,47 @@ namespace Northwind.WebFormsUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            _productService.Add(new Product
+            try
             {
-                CategoryId = Convert.ToInt32(cbxCategoryIdAdd.SelectedValue),
-                ProductName = tbxProductNameAdd.Text,
-                QuantityPerUnit = tbxQuantityPerUnitAdd.Text,
-                UnitPrice = Convert.ToDecimal(tbxUnitPriceAdd.Text),
-                UnitsInStock = Convert.ToInt16(tbxStockAdd.Text)
-            });
-            LoadCategories();
-            MessageBox.Show("Product added.");
+                _productService.Add(new Product
+                {
+                    CategoryId = Convert.ToInt32(cbxCategoryIdAdd.SelectedValue),
+                    ProductName = tbxProductNameAdd.Text,
+                    QuantityPerUnit = tbxQuantityPerUnitAdd.Text,
+                    UnitPrice = Convert.ToDecimal(tbxUnitPriceAdd.Text),
+                    UnitsInStock = Convert.ToInt16(tbxStockAdd.Text)
+                });
+                LoadCategories();
+                MessageBox.Show("Product added.");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            _productService.Update(new Product
+            try
             {
-                ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
-                ProductName = tbxProductNameUpdate.Text,
-                CategoryId = Convert.ToInt32(cbxCategoryIdUpdate.SelectedValue),
-                UnitsInStock = Convert.ToInt16(tbxStockUpdate.Text),
-                QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
-                UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text)
-            });
-            LoadCategories();
-            MessageBox.Show("Product updated.");
+                _productService.Update(new Product
+                {
+                    ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value),
+                    ProductName = tbxProductNameUpdate.Text,
+                    CategoryId = Convert.ToInt32(cbxCategoryIdUpdate.SelectedValue),
+                    UnitsInStock = Convert.ToInt16(tbxStockUpdate.Text),
+                    QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
+                    UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text)
+                });
+                LoadCategories();
+                MessageBox.Show("Product updated.");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
         }
 
         private void dgwProduct_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -118,12 +134,20 @@ namespace Northwind.WebFormsUI
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            _productService.Delete(new Product
+            try
             {
-                ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value)
-            });
-            LoadCategories();
-            MessageBox.Show("Product deleted.");
+                _productService.Delete(new Product
+                {
+                    ProductId = Convert.ToInt32(dgwProduct.CurrentRow.Cells[0].Value)
+                });
+                LoadCategories();
+                MessageBox.Show("Product deleted.");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
         }
     }
 }
