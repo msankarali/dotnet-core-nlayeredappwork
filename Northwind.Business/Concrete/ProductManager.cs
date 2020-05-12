@@ -45,5 +45,10 @@ namespace Northwind.Business.Concrete
         {
             _productDal.Update(product);
         }
+
+        public void Delete(Product product)
+        {
+            _productDal.Delete(product);
+        }
     }
 }
